@@ -1,0 +1,106 @@
+
+<!-- Main content -->
+    <section class="content">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">
+                    <!-- Button trigger modal -->
+                    <button id="create" type="button" class="btn btn-primary" >
+                        添加
+                    </button>
+<!--                    data-toggle="modal" data-target="#EditModal"-->
+                </h3>
+
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0 table-height">
+                <table class="table table-hover  text-nowrap">
+                    <thead>
+                    <tr>
+                        <th scope="col" >#</th>
+                        <th scope="col">用户名</th>
+                        <!--                      <th scope="col">密码</th>-->
+                        <th scope="col">邮箱</th>
+                        <th scope="col">手机号</th>
+                        <th scope="col">状态</th>
+                        <th scope="col">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {{each UsersData}}
+                    <tr>
+                        <th scope="row">{{$index + 1}}</th>
+                        <td>{{$value.name}}</td>
+                        <!--                      <td>{{'******'}}</td>-->
+                        <td>{{$value.email}}</td>
+                        <td>{{$value.phone}}</td>
+                        <td><span class="badge badge-success">在线</span></td>
+                        <td>
+                            <!--                          <a class="btn btn-primary btn-sm" href="#">-->
+                            <!--                              <i class="fas fa-folder">-->
+                            <!--                              </i>-->
+                            <!--                              View-->
+                            <!--                          </a>-->
+                            <a class="edit btn btn-info btn-sm" scope="{{$value}}">
+                                <i class="fas fa-pencil-alt">
+                                </i>
+                                <!--                              Edit-->
+                            </a>
+                            <a class="delete btn btn-danger btn-sm" scope="{{$value}}">
+                                <i class="fas fa-trash">
+                                </i>
+                                <!--                              Delete-->
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer clearfix">
+                <ul class="pagination pagination-sm m-0 float-right">
+                    <li class="page-item"><a class="page-link" href="#">«</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">»</a></li>
+                </ul>
+            </div>
+            <!-- /.card-body -->
+        </div>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="EditModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{@form}}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        <button id="save" type="button" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
